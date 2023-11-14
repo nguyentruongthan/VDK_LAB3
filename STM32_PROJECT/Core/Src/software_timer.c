@@ -42,16 +42,26 @@ uint8_t get_timer_button_2_500ms_flag(){
 }
 
 //timer for blink single led in MODE2, 3 and 4
-uint8_t timer_blink_single_led_flag;
-int timer_blink_single_led_count;
-void set_timer_blink_single_led(int duration){
-	timer_blink_single_led_flag = 0;
-	timer_blink_single_led_count = duration;
+uint8_t timer_blink_single_led_2Hz_flag;
+int timer_blink_single_led_2Hz_count;
+void set_timer_blink_single_led_2Hz(int duration){
+	timer_blink_single_led_2Hz_flag = 0;
+	timer_blink_single_led_2Hz_count = duration;
 }
-uint8_t get_timer_blink_single_led_flag(){
-	return timer_blink_single_led_flag;
+uint8_t get_timer_blink_single_led_2Hz_flag(){
+	return timer_blink_single_led_2Hz_flag;
 }
 
+//timer for blink one single led 1Hz
+uint8_t timer_blink_single_led_1Hz_flag;
+int timer_blink_single_led_1Hz_count;
+void set_timer_blink_single_led_1Hz(int duration){
+	timer_blink_single_led_1Hz_flag = 0;
+	timer_blink_single_led_1Hz_count = duration;
+}
+uint8_t get_timer_blink_single_led_1Hz_flag(){
+	return timer_blink_single_led_1Hz_flag;
+}
 
 //timer for sweep led 7 segment
 uint8_t timer_sweep_led_7_seg_flag;
@@ -68,13 +78,12 @@ uint8_t get_timer_sweep_led_7_seg_flag(){
 void timer_run(){
 	timer_1000ms_count --;
 	if(timer_1000ms_count <= 0){
-		HAL_GPIO_TogglePin(LED_BLINK_GPIO_Port, LED_BLINK_Pin);
 		timer_1000ms_flag = 1;
 	}
 
-	timer_blink_single_led_count --;
-	if(timer_blink_single_led_count <= 0){
-		timer_blink_single_led_flag = 1;
+	timer_blink_single_led_2Hz_count --;
+	if(timer_blink_single_led_2Hz_count <= 0){
+		timer_blink_single_led_2Hz_flag = 1;
 	}
 
 	timer_button_1_500ms_count --;
@@ -91,12 +100,20 @@ void timer_run(){
 	if(timer_sweep_led_7_seg_count <= 0){
 		timer_sweep_led_7_seg_flag = 1;
 	}
+
+	timer_blink_single_led_1Hz_count --;
+	if(timer_blink_single_led_1Hz_count <= 0){
+		HAL_GPIO_TogglePin(LED_BLINK_GPIO_Port, LED_BLINK_Pin);
+		set_timer_blink_single_led_1Hz(1000 / TIMER_DURATION);
+	}
 }
 
 void init_timer(){
-	set_timer_1000ms(10);
+	set_timer_1000ms(4);
 
-	set_timer_blink_single_led(2);
+	set_timer_blink_single_led_2Hz(3);
 
 	set_timer_sweep_led_7_seg(5);
+
+	set_timer_blink_single_led_1Hz(2);
 }

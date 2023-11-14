@@ -110,6 +110,10 @@ int main(void)
 	  // we also sweep four 7 led SEG with timer to switch two LED is 200ms
 	  fsm_for_led_7_seg();
 
+	  // fsm for reading button 1
+	  // update traffic_state once button 1 is pressed or pressed in 1s
+	  // and hold this button more than 500ms
+	  fsm_for_input_1_processing();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -249,6 +253,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	timer_run();
+	button_reading();
 }
 /* USER CODE END 4 */
 

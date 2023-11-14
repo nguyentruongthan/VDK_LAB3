@@ -17,7 +17,7 @@
 #define BUTTON_IS_RELEASED GPIO_PIN_SET
 
 // the buffer that the final result is stored after debouncing
-static GPIO_PinState buttonBuffer[N0_OF_BUTTONS];
+static GPIO_PinState buttonBuffer[N0_OF_BUTTONS] = {BUTTON_IS_RELEASED, BUTTON_IS_RELEASED, BUTTON_IS_RELEASED};
 
 // we define two buffers for debouncing
 static GPIO_PinState debounceButtonBuffer1[N0_OF_BUTTONS];

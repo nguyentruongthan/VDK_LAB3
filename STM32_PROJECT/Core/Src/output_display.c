@@ -235,7 +235,7 @@ uint8_t state_single_led_blink = 0;
 void single_led_blink_2Hz(){
 	switch(state_single_led_blink){
 	case 0:
-		if(get_timer_blink_single_led_flag()){
+		if(get_timer_blink_single_led_2Hz_flag()){
 			//change state of led blink to turn on
 			state_single_led_blink = 1;
 
@@ -243,20 +243,20 @@ void single_led_blink_2Hz(){
 			int T_OFF = (500 / 2) / TIMER_DURATION;
 			int T_ON = (500 / TIMER_DURATION) - T_OFF;
 
-			set_timer_blink_single_led(T_ON);
+			set_timer_blink_single_led_2Hz(T_ON);
 		}
 		//TODO
 		turn_off_all_single_led();
 		break;
 	case 1:
-		if(get_timer_blink_single_led_flag()){
+		if(get_timer_blink_single_led_2Hz_flag()){
 			//change state of led blink to turn off
 			state_single_led_blink = 0;
 
 			//set timer for turn off duration
 			int T_OFF = (500 / 2) / TIMER_DURATION;
 
-			set_timer_blink_single_led(T_OFF);
+			set_timer_blink_single_led_2Hz(T_OFF);
 		}
 		//TODO
 		turn_on_all_single_led();

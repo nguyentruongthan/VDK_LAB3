@@ -14,6 +14,7 @@
 
 uint8_t buttonState[N0_OF_BUTTONS] = {BUTTON_RELEASED, BUTTON_RELEASED, BUTTON_RELEASED};
 
+
 void fsm_for_input_1_processing(void){
 	switch(buttonState[0]){
 	case BUTTON_RELEASED :
