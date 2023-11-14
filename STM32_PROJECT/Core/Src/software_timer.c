@@ -53,7 +53,7 @@ uint8_t get_timer_blink_single_led_flag(){
 }
 
 
-//timer for sweep led 7 seg
+//timer for sweep led 7 segment
 uint8_t timer_sweep_led_7_seg_flag;
 int timer_sweep_led_7_seg_count;
 void set_timer_sweep_led_7_seg(int duration){
@@ -68,6 +68,7 @@ uint8_t get_timer_sweep_led_7_seg_flag(){
 void timer_run(){
 	timer_1000ms_count --;
 	if(timer_1000ms_count <= 0){
+		HAL_GPIO_TogglePin(LED_BLINK_GPIO_Port, LED_BLINK_Pin);
 		timer_1000ms_flag = 1;
 	}
 
@@ -90,4 +91,12 @@ void timer_run(){
 	if(timer_sweep_led_7_seg_count <= 0){
 		timer_sweep_led_7_seg_flag = 1;
 	}
+}
+
+void init_timer(){
+	set_timer_1000ms(10);
+
+	set_timer_blink_single_led(2);
+
+	set_timer_sweep_led_7_seg(5);
 }

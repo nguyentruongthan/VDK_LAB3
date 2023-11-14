@@ -1,0 +1,5 @@
+fsm_for_traffic_processing.c:10:6:execute_GR	8	static
+fsm_for_traffic_processing.c:25:6:execute_AR	8	static
+fsm_for_traffic_processing.c:41:6:execute_RG	8	static
+fsm_for_traffic_processing.c:56:6:execute_RA	8	static
+fsm_for_traffic_processing.c:71:6:fsm_for_traffic_state	8	static

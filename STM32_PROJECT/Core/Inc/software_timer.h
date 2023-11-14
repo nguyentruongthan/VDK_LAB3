@@ -32,4 +32,6 @@ uint8_t get_timer_sweep_led_7_seg_flag();
 
 void timer_run();
 
+void init_timer();
+
 #endif /* INC_SOFTWARE_TIMER_H_ */

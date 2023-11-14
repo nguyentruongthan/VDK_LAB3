@@ -91,12 +91,24 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE END 2 */
-
+  traffic_state = INIT;
+  init_timer();
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
+	  // fsm for update state of traffic_state
+	  // as state GR, AR, RG and RA, we update through counter of led 7 SEG
+	  fsm_for_traffic_state();
+
+	  // fsm for display single led according traffic_state
+	  fsm_for_single_led();
+
+	  // fsm for display single led according buffer of led 7 SEG
+	  // we update buffer of led 7 SEG in another function
+	  // we also sweep four 7 led SEG with timer to switch two LED is 200ms
+	  fsm_for_led_7_seg();
 
     /* USER CODE BEGIN 3 */
   }
