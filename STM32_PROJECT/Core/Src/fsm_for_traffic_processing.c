@@ -27,10 +27,11 @@ void set_traffic_led_7SEG_duration_using_button_3(){
 
 
 void increase_traffic_led_7SEG_using_button_2(){
-	if(	traffic_state == GR || traffic_state == AR ||
-		traffic_state == RG || traffic_state == RA ){
-		traffic_led_7SEG_1 ++;
+	if(	traffic_state == MODE2 || traffic_state == MODE3 ||
+		traffic_state == MODE4){
+		traffic_led_7SEG_1 = (traffic_led_7SEG_1 % 99) + 1;
 	}
+
 }
 
 // check if duration of red equal to sum of duration of green and amber
@@ -47,9 +48,11 @@ void update_traffic_state_using_button_1(){
 	switch(traffic_state){
 		case MODE2:
 			traffic_state = MODE3;
+			traffic_led_7SEG_1 = amber_duration;
 			break;
 		case MODE3:
 			traffic_state = MODE4;
+			traffic_led_7SEG_1 = green_duration;
 			break;
 		case MODE4:
 			// setup to prepare change traffic_state to GR
@@ -66,6 +69,7 @@ void update_traffic_state_using_button_1(){
 			break;
 		default:
 			traffic_state = MODE2;
+			traffic_led_7SEG_1 = red_duration;
 			break;
 	}
 }
@@ -138,23 +142,17 @@ void execute_MODE2(){
 	//traffic led 7 SEG third and fourth displays number 2
 	traffic_led_7SEG_2 = 2;
 
-	//update traffic led 7 SEG first and second every press button 2
-
 }
 
 void execute_MODE3(){
 	//traffic led 7 SEG third and fourth displays number 2
 	traffic_led_7SEG_2 = 3;
 
-	//update traffic led 7 SEG first and second every press button 2
-
 }
 
 void execute_MODE4(){
 	//traffic led 7 SEG third and fourth displays number 2
 	traffic_led_7SEG_2 = 4;
-
-	//update traffic led 7 SEG first and second every press button 2
 
 }
 void fsm_for_traffic_state(){

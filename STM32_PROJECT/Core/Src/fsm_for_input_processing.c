@@ -58,9 +58,10 @@ void fsm_for_input_2_processing(void){
 		if(is_button_pressed(1)){
 			buttonState[1] = BUTTON_PRESSED ;
 			//TODO
+
 			increase_traffic_led_7SEG_using_button_2();
 		}
-		break ;
+		break;
 	case BUTTON_PRESSED :
 		if(!is_button_pressed(1)) {
 			buttonState[1] = BUTTON_RELEASED ;

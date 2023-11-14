@@ -114,6 +114,17 @@ int main(void)
 	  // update traffic_state once button 1 is pressed or pressed in 1s
 	  // and hold this button more than 500ms
 	  fsm_for_input_1_processing();
+
+	  // fsm for reading button 3
+	  // if traffic_state is MODE2, 3 or 4, it will increase value of traffic_led_7SEG
+	  // once pressed or hold button 2 more than 1 second or every 0.5 second after
+	  // hold button 2 more than 1 second
+	  fsm_for_input_2_processing();
+
+	  // fsm for reading button 3
+	  // if traffic_state is MODE2, 3 or 4, it will set value of duration of red, amber or green
+	  // according with MODE2, 3 or 4 when we pressed it.
+	  fsm_for_input_3_processing();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
