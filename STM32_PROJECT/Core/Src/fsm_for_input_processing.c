@@ -51,3 +51,59 @@ void fsm_for_input_1_processing(void){
 	}
 }
 
+
+void fsm_for_input_2_processing(void){
+	switch(buttonState[1]){
+	case BUTTON_RELEASED:
+		if(is_button_pressed(1)){
+			buttonState[1] = BUTTON_PRESSED ;
+			//TODO
+			increase_traffic_led_7SEG_using_button_2();
+		}
+		break ;
+	case BUTTON_PRESSED :
+		if(!is_button_pressed(1)) {
+			buttonState[1] = BUTTON_RELEASED ;
+		}else {
+			if(is_button_pressed_1s(1)){
+				buttonState[1] = BUTTON_PRESSED_MORE_THAN_1_SECOND;
+				//TODO for first time BUTTON_PRESSED_MORE_THAN_1_SECOND
+				set_timer_button_2_500ms(500/TIMER_DURATION);
+				increase_traffic_led_7SEG_using_button_2();
+			}
+		}
+		break ;
+	case BUTTON_PRESSED_MORE_THAN_1_SECOND:
+		if(!is_button_pressed(1)){
+			buttonState[1] = BUTTON_RELEASED;
+		}
+		// set timer 500ms, if flag for timer 500ms is set -> DO something
+		// TODO
+		if(get_timer_button_2_500ms_flag()){
+			set_timer_button_2_500ms(500/TIMER_DURATION);
+			//TODO
+			increase_traffic_led_7SEG_using_button_2();
+		}
+		break ;
+	}
+}
+
+void fsm_for_input_3_processing(){
+	switch(buttonState[2]){
+	case BUTTON_RELEASED:
+		if(is_button_pressed(2)){
+			buttonState[2] = BUTTON_PRESSED ;
+			//TODO
+			set_traffic_led_7SEG_duration_using_button_3();
+		}
+		break ;
+	case BUTTON_PRESSED :
+		if(!is_button_pressed(2)) {
+			buttonState[2] = BUTTON_RELEASED ;
+		}
+		break;
+	default: break;
+	}
+}
+
+

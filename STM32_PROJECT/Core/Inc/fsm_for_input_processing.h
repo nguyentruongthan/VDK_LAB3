@@ -12,5 +12,7 @@
 #include "global.h"
 
 void fsm_for_input_1_processing();
+void fsm_for_input_2_processing();
+void fsm_for_input_3_processing();
 
 #endif /* INC_FSM_FOR_INPUT_PROCESSING_H_ */

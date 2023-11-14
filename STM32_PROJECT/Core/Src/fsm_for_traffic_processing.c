@@ -8,6 +8,31 @@
 #include "fsm_for_traffic_processing.h"
 
 
+
+
+void set_traffic_led_7SEG_duration_using_button_3(){
+	switch(traffic_state){
+	case MODE2:
+		red_duration = traffic_led_7SEG_1;
+		break;
+	case MODE3:
+		amber_duration = traffic_led_7SEG_1;
+		break;
+	case MODE4:
+		green_duration = traffic_led_7SEG_1;
+		break;
+	default:break;
+	}
+}
+
+
+void increase_traffic_led_7SEG_using_button_2(){
+	if(	traffic_state == GR || traffic_state == AR ||
+		traffic_state == RG || traffic_state == RA ){
+		traffic_led_7SEG_1 ++;
+	}
+}
+
 // check if duration of red equal to sum of duration of green and amber
 // if not equal, reset duration of this duration to INIT
 void check_duration_led_7SEG(){
