@@ -13,4 +13,5 @@
 
 uint32_t TIMER_DURATION;//ms
 
+
 #endif /* INC_GLOBAL_H_ */

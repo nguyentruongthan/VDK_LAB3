@@ -26,6 +26,10 @@ uint8_t get_timer_button_2_500ms_flag();
 void set_timer_blink_single_led(int duration);
 uint8_t get_timer_blink_single_led_flag();
 
+//timer for sweep led 7 seg
+void set_timer_sweep_led_7_seg(int duration);
+uint8_t get_timer_sweep_led_7_seg_flag();
+
 void timer_run();
 
 #endif /* INC_SOFTWARE_TIMER_H_ */

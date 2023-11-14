@@ -53,6 +53,18 @@ uint8_t get_timer_blink_single_led_flag(){
 }
 
 
+//timer for sweep led 7 seg
+uint8_t timer_sweep_led_7_seg_flag;
+int timer_sweep_led_7_seg_count;
+void set_timer_sweep_led_7_seg(int duration){
+	timer_sweep_led_7_seg_flag = 0;
+	timer_sweep_led_7_seg_count = duration;
+}
+uint8_t get_timer_sweep_led_7_seg_flag(){
+	return timer_sweep_led_7_seg_flag;
+}
+
+
 void timer_run(){
 	timer_1000ms_count --;
 	if(timer_1000ms_count <= 0){
@@ -72,5 +84,10 @@ void timer_run(){
 	timer_button_2_500ms_count --;
 	if(timer_button_2_500ms_count <= 0){
 		timer_button_2_500ms_flag = 1;
+	}
+
+	timer_sweep_led_7_seg_count --;
+	if(timer_sweep_led_7_seg_count <= 0){
+		timer_sweep_led_7_seg_flag = 1;
 	}
 }
