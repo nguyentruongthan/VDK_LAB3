@@ -100,15 +100,8 @@ int main(void)
     /* USER CODE END WHILE */
 	  // fsm for update state of traffic_state
 	  // as state GR, AR, RG and RA, we update through counter of led 7 SEG
+	  // this function also display led7SEG and single led according traffic_state
 	  fsm_for_traffic_state();
-
-	  // fsm for display single led according traffic_state
-	  fsm_for_single_led();
-
-	  // fsm for display single led according buffer of led 7 SEG
-	  // we update buffer of led 7 SEG in another function
-	  // we also sweep four 7 led SEG with timer to switch two LED is 200ms
-	  fsm_for_led_7_seg();
 
 	  // fsm for reading button 1
 	  // update traffic_state once button 1 is pressed or pressed in 1s
@@ -205,7 +198,9 @@ static void MX_TIM2_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN TIM2_Init 2 */
+  // frequency of timer interrupt
   uint32_t TIMER_F = 8000000/((htim2.Init.Prescaler + 1)*(htim2.Init.Period + 1));
+  // cycle of timer interrupt with unit is mili second
   TIMER_DURATION = 1000/TIMER_F;//ms
   /* USER CODE END TIM2_Init 2 */
 

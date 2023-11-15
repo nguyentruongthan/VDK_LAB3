@@ -31,6 +31,9 @@ void fsm_for_input_1_processing(void){
 			if(is_button_pressed_1s(0)){
 				buttonState[0] = BUTTON_PRESSED_MORE_THAN_1_SECOND;
 				//TODO for first time BUTTON_PRESSED_MORE_THAN_1_SECOND
+				// set timer 500ms for getting 500ms
+				// since first time BUTTON_PRESSED_MORE_THAN_1_SECOND
+				// we use flag for timer_button_500ms for increase mode then
 				set_timer_button_1_500ms(500/TIMER_DURATION);
 				update_traffic_state_using_button_1();
 			}
@@ -40,9 +43,9 @@ void fsm_for_input_1_processing(void){
 		if(!is_button_pressed(0)){
 			buttonState[0] = BUTTON_RELEASED;
 		}
-		// set timer 500ms, if flag for timer 500ms is set -> DO something
-		// TODO
+		// if flag for timer 500ms is set -> DO something
 		if(get_timer_button_1_500ms_flag()){
+			// set timer again for use again
 			set_timer_button_1_500ms(500/TIMER_DURATION);
 			//TODO
 			update_traffic_state_using_button_1();
@@ -58,7 +61,6 @@ void fsm_for_input_2_processing(void){
 		if(is_button_pressed(1)){
 			buttonState[1] = BUTTON_PRESSED ;
 			//TODO
-
 			increase_traffic_led_7SEG_using_button_2();
 		}
 		break;

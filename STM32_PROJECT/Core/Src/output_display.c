@@ -207,6 +207,7 @@ void single_led_for_AR(){
 }
 
 
+
 void turn_on_all_single_led(){
 	//TRAFFIC LIGHT 1
 	HAL_GPIO_WritePin(RED_1_GPIO_Port, RED_1_Pin, GPIO_PIN_SET);
@@ -246,6 +247,7 @@ void single_led_blink_2Hz(){
 			set_timer_blink_single_led_2Hz(T_ON);
 		}
 		//TODO
+		//turn off all single LED
 		turn_off_all_single_led();
 		break;
 	case 1:
@@ -259,47 +261,10 @@ void single_led_blink_2Hz(){
 			set_timer_blink_single_led_2Hz(T_OFF);
 		}
 		//TODO
+		//turn on all single LED
 		turn_on_all_single_led();
 		break;
-	default:
-		break;
+	default: break;
 	}
 }
 
-void fsm_for_single_led(){
-	switch(traffic_state){
-	case RG:
-		single_led_for_RG();
-		break;
-	case RA:
-		single_led_for_RA();
-		break;
-	case GR:
-		single_led_for_GR();
-		break;
-	case AR:
-		single_led_for_AR();
-		break;
-	default:
-		single_led_blink_2Hz();
-		break;
-	}
-}
-
-void fsm_for_led_7_seg(){
-	switch(traffic_state){
-	case MODE2:
-		updateTraffic7SEGBuffer();
-		break;
-	case MODE3:
-		updateTraffic7SEGBuffer();
-		break;
-	case MODE4:
-		updateTraffic7SEGBuffer();
-		break;
-	default:
-		updateTraffic7SEGBuffer();
-		break;
-	}
-	update7SEG();
-}

@@ -14,7 +14,10 @@
 void update7SEG();
 void updateTraffic7SEGBuffer();
 
-void fsm_for_single_led();
-void fsm_for_led_7_seg();
+void single_led_for_RG();
+void single_led_for_RA();
+void single_led_for_GR();
+void single_led_for_AR();
+void single_led_blink_2Hz();
 
 #endif /* INC_OUTPUT_DISPLAY_H_ */

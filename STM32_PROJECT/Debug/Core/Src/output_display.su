@@ -5,8 +5,6 @@ output_display.c:161:6:single_led_for_RG	8	static
 output_display.c:173:6:single_led_for_RA	8	static
 output_display.c:185:6:single_led_for_GR	8	static
 output_display.c:197:6:single_led_for_AR	8	static
-output_display.c:210:6:turn_on_all_single_led	8	static
-output_display.c:222:6:turn_off_all_single_led	8	static
-output_display.c:235:6:single_led_blink_2Hz	24	static
-output_display.c:269:6:fsm_for_single_led	8	static
-output_display.c:289:6:fsm_for_led_7_seg	8	static
+output_display.c:211:6:turn_on_all_single_led	8	static
+output_display.c:223:6:turn_off_all_single_led	8	static
+output_display.c:236:6:single_led_blink_2Hz	24	static

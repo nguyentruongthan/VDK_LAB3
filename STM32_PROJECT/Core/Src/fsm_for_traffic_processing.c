@@ -48,21 +48,28 @@ void update_traffic_state_using_button_1(){
 	switch(traffic_state){
 		case MODE2:
 			traffic_state = MODE3;
+			// set value of traffic_led_7SEG_1 which is showed in LED7SEG first and second
+			// to value of amber duration when we change state from MODE2 to MODE3
 			traffic_led_7SEG_1 = amber_duration;
 			break;
 		case MODE3:
 			traffic_state = MODE4;
+			// set value of traffic_led_7SEG_1 which is showed in LED7SEG first and second
+			// to value of green duration when we change state from MODE3 to MODE4
 			traffic_led_7SEG_1 = green_duration;
 			break;
 		case MODE4:
 			// setup to prepare change traffic_state to GR
+
 			// check if duration of red equal to sum of duration of green and amber
 			// if not equal, reset duration of this duration to INIT
 			check_duration_led_7SEG();
 			// reset value of 4 traffic to duration of state green - red
+			// for we change to state GR
 			traffic_led_7SEG_1 = green_duration;
 			traffic_led_7SEG_2 = red_duration;
-			// set timer 1000ms
+			// set timer 1000ms for use for update update value of traffic_led_7SEG_1
+			// and traffic_led_7SEG_1 every one second
 			set_timer_1000ms(1000/TIMER_DURATION);
 
 			traffic_state = GR;
@@ -76,6 +83,9 @@ void update_traffic_state_using_button_1(){
 
 
 void execute_GR(){
+	//display single LED for state GREEN - LED
+	single_led_for_GR();
+	//update value of led 7 SEG once software timer 1000ms
 	if(get_timer_1000ms_flag()){
 		set_timer_1000ms(1000 / TIMER_DURATION);
 		//TODO
@@ -85,12 +95,17 @@ void execute_GR(){
 		if(traffic_led_7SEG_1 <= 0){
 			traffic_state = AR;
 
+			//update value of two led 7 SEG first to amber_duration
+			//for prepare for state AMBER - RED
 			traffic_led_7SEG_1 = amber_duration;
 		}
 	}
 }
 
 void execute_AR(){
+	//display single LED for state AMBER - RED
+	single_led_for_AR();
+	//update value of led 7 SEG once software timer 1000ms
 	if(get_timer_1000ms_flag()){
 		set_timer_1000ms(1000 / TIMER_DURATION);
 		//TODO
@@ -100,6 +115,9 @@ void execute_AR(){
 		if(traffic_led_7SEG_1 <= 0){
 			traffic_state = RG;
 
+			//update value of two led 7 SEG first to red_duration
+			//and other two led 7 SEG to green_duration
+			//for prepare for state RED - GREEN
 			traffic_led_7SEG_1 = red_duration;
 			traffic_led_7SEG_2 = green_duration;
 
@@ -108,6 +126,7 @@ void execute_AR(){
 }
 
 void execute_RG(){
+	single_led_for_RG();
 	if(get_timer_1000ms_flag()){
 		set_timer_1000ms(1000 / TIMER_DURATION);
 		//TODO
@@ -123,6 +142,7 @@ void execute_RG(){
 }
 
 void execute_RA(){
+	single_led_for_RA();
 	if(get_timer_1000ms_flag()){
 		set_timer_1000ms(1000 / TIMER_DURATION);
 		//TODO
@@ -141,19 +161,23 @@ void execute_RA(){
 void execute_MODE2(){
 	//traffic led 7 SEG third and fourth displays number 2
 	traffic_led_7SEG_2 = 2;
-
+	//display for single led
+	single_led_blink_2Hz();
 }
 
 void execute_MODE3(){
 	//traffic led 7 SEG third and fourth displays number 2
 	traffic_led_7SEG_2 = 3;
+	//display for single led
+	single_led_blink_2Hz();
 
 }
 
 void execute_MODE4(){
 	//traffic led 7 SEG third and fourth displays number 2
 	traffic_led_7SEG_2 = 4;
-
+	//display for single led
+	single_led_blink_2Hz();
 }
 void fsm_for_traffic_state(){
 	switch(traffic_state){
@@ -164,6 +188,8 @@ void fsm_for_traffic_state(){
 		green_duration = GREEN_DURATION_INIT;
 		amber_duration = AMBER_DURATION_INIT;
 
+		// set value of traffic_led_7SEG_1 and traffic_led_7SEG_2
+		// to prepare for display in state GR
 		traffic_led_7SEG_1 = green_duration;
 		traffic_led_7SEG_2 = red_duration;
 
@@ -191,4 +217,9 @@ void fsm_for_traffic_state(){
 		break;
 	default: break;
 	}
+	//display led 7 SEG
+	// update buffer for LED 7 SEG
+	updateTraffic7SEGBuffer();
+	// sweep LED 7 SEG
+	update7SEG();
 }
