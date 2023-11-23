@@ -28,17 +28,26 @@ uint32_t TIMER_DURATION;//ms
 #define MODE4		7
 
 
+//initial time duration of red, green and amber
+//if change from MODE4 to GR but duration of red not
+//equal to green plus amber
+//we will assign duration of it by this initial value
 #define RED_DURATION_INIT		8
 #define GREEN_DURATION_INIT		5
 #define AMBER_DURATION_INIT		3
 
+//time duration of red, green and amber
 uint8_t red_duration;
 uint8_t green_duration;
 uint8_t amber_duration;
 
+//state of MODE in fsm_system
+//contains value: INIT, AR, GR, RA, RG, MODE2, MODE3 and MODE4
 uint8_t traffic_state;
 
+//value using display LED 7 SEG first and second
 uint8_t traffic_led_7SEG_1;
+//value using display LED 7 SEG third and fourth
 uint8_t traffic_led_7SEG_2;
 
 #endif /* INC_GLOBAL_H_ */
